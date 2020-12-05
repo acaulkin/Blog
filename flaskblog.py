@@ -9,45 +9,44 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'b8d5d21266873aa3c6c92ba47a8365a3'
 
-# Blog postings dictionary
+# Example Blog Postings 
 posts = [
     {
-        'author': 'Corey Schafer',
+        'author': 'Andrew Caulkins',
         'title': 'Blog Post 1',
         'content': 'First post content',
-        'date_posted': 'April 20, 2018'
+        'date_posted': 'December 4, 2020'
     } ,
     {   'author': 'Jane Doe',
         'title': 'Blog Post 2',
         'content': 'Second post content',
-        'date_posted': 'April 21, 2018'
+        'date_posted': 'April 21, 2025'
     }
 ]
 
 
-
-@app.route('/') # Root page of website
+# Root page of website
+@app.route('/') 
 @app.route('/home')
 def home():
     return render_template('home.html', posts=posts, title='Home')
 
-@app.route('/about/') # about page of website
+# About Page
+@app.route('/about/') 
 def about():
     return render_template('about.html', title='About')
     
-@app.route('/register', methods=['GET', 'POST']) # Registration Form
+ # Registration Form
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        if form.username.data == 'tsauve' or form.username.data == 'trevor' or form.username.data == 'Trevor':
-            flash(f'{form.username.data} is fucking gay as fuck bro!', 'success')
-            return redirect(url_for('home'))
-        else:
             flash(f'Account created for {form.username.data}!', 'success')
             return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
     
-@app.route('/login', methods=['GET', 'POST']) # Registration Form
+# Login Page
+@app.route('/login', methods=['GET', 'POST']) 
 def login():
     form = LoginForm()
     if form.validate_on_submit():
