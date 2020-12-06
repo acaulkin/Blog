@@ -9,8 +9,7 @@ app.config['SECRET_KEY'] = 'b8d5d21266873aa3c6c92ba47a8365a3'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 
-
-# Class that defines the user database
+# User database structure
 class User(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(20), unique = True, nullable = False)
@@ -21,8 +20,7 @@ class User(db.Model):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
-
-# Class that defines the postings database
+# postings database structure
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(100), nullable = False)
@@ -33,8 +31,7 @@ class Post(db.Model):
     def __repr__(self):
         return f"User('{self.title}', '{self.date_posted}')"
 
-
-# Example Blog Postings
+# Example blog postings
 posts = [
     {
         'author': 'Andrew Caulkins',
@@ -50,19 +47,18 @@ posts = [
     }
 ]
 
-
 # Root page of website
 @app.route('/') 
 @app.route('/home')
 def home():
     return render_template('home.html', posts=posts, title='Home')
 
-# About Page
+# About page
 @app.route('/about/') 
 def about():
     return render_template('about.html', title='About')
     
- # Registration Form
+ # Registration form
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
@@ -71,7 +67,7 @@ def register():
             return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
     
-# Login Page
+# Login page
 @app.route('/login', methods=['GET', 'POST']) 
 def login():
     form = LoginForm()
