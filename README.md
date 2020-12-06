@@ -1,1 +1,8 @@
-# to run in dev mode: just run the flaskblog.py file! The code snippet at the bottom will automatically put the code into dev mode, to make and stage easy changes to the site.
+# Welcome to my Blog! 
+
+# Frontend
+This blog's frontend is basic html/css.
+
+# Backend
+This blog was created with a python-flask backend, with a sqlLite relational database.
+This database stores user and post information.
