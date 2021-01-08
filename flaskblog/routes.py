@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from flaskblog import app, db, bcrypt
-from flaskblog.forms import RegistrationForm, LoginForm
+from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from flaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -49,7 +49,7 @@ def register():
     return render_template('register.html', title='Register', form=form)
     
 # Login page
-@app.route('/login', methods=['GET', 'POST']) 
+@app.route('/login', methods = ['GET', 'POST']) 
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -62,7 +62,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
             flash('Login unsuccessful, please check email and password','danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title = 'Login', form = form)
 
  # Logout route
 @app.route("/logout")
@@ -74,7 +74,11 @@ def logout():
 @app.route("/account")
 @login_required
 def account():
-    return render_template('account.html', title='Account')
+    form = UpdateAccountForm()
+    image_file = url_for('static', filename = 'profile_pics/' + current_user.image_file)
+    return render_template('account.html', title = 'Account', image_file = image_file, form = form)
+
+
 
 
 
