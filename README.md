@@ -1,5 +1,4 @@
 # Welcome to my tech blog!
-# www.ajtechblog.com
 
 You can access the site at: www.ajtechblog.com
 Feel free to make an account and have fun!
