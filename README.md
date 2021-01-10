@@ -1,6 +1,5 @@
-# Welcome to my tech blog!
-
-You can access the site at: www.ajtechblog.com
+# Welcome to my tech blog: www.ajtechblog.com
+You can access the site at the link above.
 Feel free to make an account and have fun!
 
 # Frontend
